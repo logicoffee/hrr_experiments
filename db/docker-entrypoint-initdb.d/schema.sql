@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS match;
+DROP TABLE IF EXISTS player_hobby;
+DROP TABLE IF EXISTS hobby;
+DROP TABLE IF EXISTS player;
+DROP TABLE IF EXISTS team;
+DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS data_type;
+
 CREATE TABLE country (
   id SERIAL PRIMARY KEY,
   country_name text
@@ -34,7 +42,8 @@ CREATE TABLE player_hobby (
 CREATE TYPE fruit AS ENUM ('apple', 'orange', 'banana');
 
 CREATE TABLE data_type (
-  real_type real,
+  --real_type real,
+  double_type double precision,
   bool_type boolean,
   date_type date,
   time_type time with time zone,
