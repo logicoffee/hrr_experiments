@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS data_type;
 
 CREATE TABLE country (
   id SERIAL PRIMARY KEY,
-  country_name text
+  country_name text NOT NULL
 );
 
 CREATE TABLE team (
@@ -52,3 +52,11 @@ CREATE TABLE data_type (
   json_type jsonb,
   array_type integer[]
 );
+
+INSERT INTO
+  country (country_name)
+VALUES
+  ('Japan'),
+  ('China'),
+  ('Australia'),
+  ('Russia');
