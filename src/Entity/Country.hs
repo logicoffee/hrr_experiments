@@ -6,6 +6,7 @@
 
 module Entity.Country where
 
+import           Database.HDBC                   (commit)
 import           Database.HDBC.Query.TH          (defineTableFromDB)
 import           Database.HDBC.Record.Insert     (runInsert)
 import           Database.HDBC.Record.Query      (runQuery')
@@ -22,10 +23,11 @@ $(defineTableFromDB
     [''Show, ''Generic])
 
 
-testInsert :: IO Integer
+testInsert :: IO ()
 testInsert = do
     conn <- connectPG
     runInsert conn (insert countryName')  "USA"
+    commit conn
 
 showAllCountries :: IO ()
 showAllCountries = do
