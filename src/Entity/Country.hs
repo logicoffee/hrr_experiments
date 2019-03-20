@@ -7,7 +7,7 @@
 module Entity.Country where
 
 import           Database.HDBC                   (commit)
-import           Database.HDBC.Query.TH          (defineTableFromDB)
+import           Database.HDBC.Query.TH          (defineTableFromDB')
 import           Database.HDBC.Record.Insert     (runInsert)
 import           Database.HDBC.Record.Query      (runQuery')
 import           Database.HDBC.Schema.PostgreSQL (driverPostgreSQL)
@@ -15,11 +15,12 @@ import           Database.Relational.Type        (insert, relationalQuery)
 import           DB                              (connectPG)
 import           GHC.Generics                    (Generic)
 
-$(defineTableFromDB
+$(defineTableFromDB'
     connectPG
     driverPostgreSQL
     "public"
     "country"
+    [("id", [t|Int|])]
     [''Show, ''Generic])
 
 

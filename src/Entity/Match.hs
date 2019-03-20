@@ -6,16 +6,17 @@
 
 module Entity.Match where
 
-import           Database.HDBC.Query.TH          (defineTableFromDB)
+import           Database.HDBC.Query.TH          (defineTableFromDB')
 import           Database.HDBC.Schema.PostgreSQL (driverPostgreSQL)
 import           DB                              (connectPG)
 import           GHC.Generics                    (Generic)
 
 
-$(defineTableFromDB
+$(defineTableFromDB'
     connectPG
     driverPostgreSQL
     "public"
     "match"
+    [("id", [t|Int|])]
     [''Show, ''Generic])
 

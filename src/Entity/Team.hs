@@ -6,16 +6,17 @@
 
 module Entity.Team where
 
-import           Database.HDBC.Query.TH          (defineTableFromDB)
+import           Database.HDBC.Query.TH          (defineTableFromDB')
 import           Database.HDBC.Schema.PostgreSQL (driverPostgreSQL)
 import           DB                              (connectPG)
 import           GHC.Generics                    (Generic)
 
 
-$(defineTableFromDB
+$(defineTableFromDB'
     connectPG
     driverPostgreSQL
     "public"
     "team"
+    [("id", [t|Int|])]
     [''Show, ''Generic])
 
